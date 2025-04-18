@@ -145,7 +145,7 @@ console.log(`Values: [${linkedList.getAll().toString()}]`);
 console.log("------------------\n");
 
 console.log("------------------");
-console.log("Clear Method Example:");
+console.log("Clear:");
 linkedList.clear();
 console.log(`After clearing, length: ${linkedList.size()}`);
 console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
