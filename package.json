@@ -1,0 +1,29 @@
+{
+    "name": "dsa",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "type": "module",
+    "scripts": {
+        "dev": "node --experimental-strip-types src/index.ts",
+        "lint": "eslint . --report-unused-disable-directives --max-warnings 0",
+        "lint:fix": "eslint . --fix --report-unused-disable-directives --max-warnings 0",
+        "format": "prettier -uw --cache --ignore-path .gitignore ."
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "packageManager": "pnpm@10.8.1",
+    "devDependencies": {
+        "@eslint/js": "^9.24.0",
+        "@types/node": "^22.14.1",
+        "eslint": "^9.24.0",
+        "eslint-config-prettier": "^10.1.2",
+        "eslint-import-resolver-typescript": "^4.3.2",
+        "eslint-plugin-import": "^2.31.0",
+        "globals": "^16.0.0",
+        "prettier": "^3.5.3",
+        "typescript": "^5.8.3",
+        "typescript-eslint": "^8.30.1"
+    }
+}
