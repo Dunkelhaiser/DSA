@@ -1,3 +1,4 @@
+import { fizzBuzz, fizzBuzzSet } from "./fizzBuzz.js";
 import { List } from "./List.js";
 import { reverse } from "./reverse.js";
 
@@ -58,4 +59,13 @@ const reversedNum = reverse(num);
 
 console.log(`\nOriginal number: ${num}`);
 console.log(`Reversed number: ${reversedNum}`);
+console.log("------------------\n");
+
+console.log("------------------");
+console.log(fizzBuzz(9));
+console.log(fizzBuzz(20));
+console.log(fizzBuzz(15));
+console.log(fizzBuzz(4));
+console.log();
+console.log(fizzBuzzSet(20));
 console.log("------------------\n");
