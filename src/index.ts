@@ -1,4 +1,5 @@
 import { List } from "./List.js";
+import { reverseString } from "./reverseString.js";
 
 const list = new List(1, 2, 3);
 
@@ -41,4 +42,12 @@ console.log(`\nList after replacing out of bounds element: [${list.getAll().toSt
 console.log(`Length: ${list.length}`);
 console.log("------------------\n");
 
+console.log("------------------");
 console.log(list);
+console.log("------------------\n");
+
+const str = "Hello";
+const reversedStr = reverseString(str);
+
+console.log(`Original string: ${str}`);
+console.log(`Reversed string: ${reversedStr}`);
