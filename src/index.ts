@@ -1,5 +1,5 @@
 import { List } from "./List.js";
-import { reverseString } from "./reverseString.js";
+import { reverse } from "./reverse.js";
 
 const list = new List(1, 2, 3);
 
@@ -46,8 +46,16 @@ console.log("------------------");
 console.log(list);
 console.log("------------------\n");
 
+console.log("------------------");
 const str = "Hello";
-const reversedStr = reverseString(str);
+const reversedStr = reverse(str);
 
 console.log(`Original string: ${str}`);
 console.log(`Reversed string: ${reversedStr}`);
+
+const num = 12345;
+const reversedNum = reverse(num);
+
+console.log(`\nOriginal number: ${num}`);
+console.log(`Reversed number: ${reversedNum}`);
+console.log("------------------\n");
