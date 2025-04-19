@@ -64,4 +64,9 @@ export class List<T> {
             this.length = idx + 1;
         } else this.data[idx] = element;
     }
+
+    clear() {
+        this.data = {};
+        this.length = 0;
+    }
 }
