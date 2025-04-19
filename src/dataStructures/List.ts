@@ -15,9 +15,12 @@ export class List<T> {
     }
 
     pop() {
-        if (this.length === 0) return;
+        if (this.length === 0) return undefined;
+        const item = this.data[this.length - 1];
         delete this.data[this.length - 1];
         this.length--;
+
+        return item;
     }
 
     unshift(item: T) {
@@ -29,11 +32,18 @@ export class List<T> {
     }
 
     shift() {
+        if (this.length === 0) return undefined;
+
+        // eslint-disable-next-line prefer-destructuring
+        const item = this.data[0];
+
         for (let i = 0; i < this.length - 1; i++) {
             this.data[i] = this.data[i + 1];
         }
         delete this.data[this.length - 1];
         this.length--;
+
+        return item;
     }
 
     get(idx: number) {
