@@ -1,4 +1,4 @@
-class Node<T> {
+export class Node<T> {
     value: T;
     next: Node<T> | null;
 
