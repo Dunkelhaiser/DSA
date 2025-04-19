@@ -1,3 +1,4 @@
+import chalk from "chalk";
 import inquirer from "inquirer";
 import { DoublyLinkedList } from "../dataStructures/DoublyLinkedList.js";
 import { displayLinkedList } from "./handleLinkedList.js";
@@ -7,7 +8,7 @@ export const handleDoublyLinkedList = async () => {
     const initialValues = await getInitialValues();
     const doublyLinkedList = new DoublyLinkedList(...initialValues);
 
-    console.log();
+    displayTimeComplexity();
     displayLinkedList(doublyLinkedList, "Doubly linked list");
 
     while (true) {
@@ -26,6 +27,7 @@ export const handleDoublyLinkedList = async () => {
                 "Remove element",
                 "Display doubly linked list",
                 "Clear doubly linked list",
+                "Display time complexity",
                 "Return to main menu",
             ],
             loop: false,
@@ -186,8 +188,35 @@ export const handleDoublyLinkedList = async () => {
                 displayLinkedList(doublyLinkedList, "Doubly linked list");
                 break;
 
+            case "Display time complexity":
+                displayTimeComplexity();
+                break;
+
             default:
                 return;
         }
     }
+};
+
+const displayTimeComplexity = () => {
+    separator("top");
+    console.log(chalk.yellow("Time Complexity (Big O):"));
+    console.log(`${chalk.magenta("constructor:")} ${chalk.bold.magenta("O(n)")} - n is the number of initial elements`);
+    console.log(`${chalk.magenta("push:")} ${chalk.bold.magenta("O(1)")} - constant time with tail pointer`);
+    console.log(
+        `${chalk.magenta("pop:")} ${chalk.bold.magenta("O(1)")} - constant time with tail pointer and prev reference`
+    );
+    console.log(`${chalk.magenta("unshift:")} ${chalk.bold.magenta("O(1)")} - constant time insertion at head`);
+    console.log(`${chalk.magenta("shift:")} ${chalk.bold.magenta("O(1)")} - constant time removal from head`);
+    console.log(
+        `${chalk.magenta("getElement:")} ${chalk.bold.magenta("O(n)")} - optimized by starting from head or tail based on index`
+    );
+    console.log(`${chalk.magenta("set:")} ${chalk.bold.magenta("O(n)")} - uses getElement which is O(n)`);
+    console.log(`${chalk.magenta("insert:")} ${chalk.bold.magenta("O(n)")} - may need to traverse to find position`);
+    console.log(`${chalk.magenta("remove:")} ${chalk.bold.magenta("O(n)")} - may need to traverse to find position`);
+    console.log(`${chalk.magenta("getAll:")} ${chalk.bold.magenta("O(n)")} - traverses the entire list`);
+    console.log(`${chalk.magenta("getHead/getTail:")} ${chalk.bold.magenta("O(1)")} - returns stored references`);
+    console.log(`${chalk.magenta("size:")} ${chalk.bold.magenta("O(1)")} - returns stored length value`);
+    console.log(`${chalk.magenta("clear:")} ${chalk.bold.magenta("O(1)")} - resets reference pointers`);
+    separator("bottom");
 };
