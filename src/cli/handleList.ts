@@ -7,7 +7,7 @@ export const handleList = async () => {
     const initialValues = await getInitialValues();
     const list = new List(...initialValues);
 
-    console.log();
+    displayTimeComplexity();
     displayList(list);
 
     while (true) {
@@ -25,6 +25,7 @@ export const handleList = async () => {
                 "Replace element",
                 "Display list",
                 "Clear list",
+                "Display time complexity",
                 "Return to main menu",
             ],
             loop: false,
@@ -145,6 +146,10 @@ export const handleList = async () => {
                 displayList(list);
                 break;
 
+            case "Display time complexity":
+                displayTimeComplexity();
+                break;
+
             default:
                 return;
         }
@@ -156,5 +161,22 @@ const displayList = <T>(list: List<T>) => {
     console.log(chalk.blue("List contents:"));
     console.log(`${chalk.cyan("Values:")} [${chalk.bold.cyan(list.getAll().join(", "))}]`);
     console.log(`${chalk.green("Length:")} ${chalk.bold.green(list.size())}`);
+    separator("bottom");
+};
+
+const displayTimeComplexity = () => {
+    separator("top");
+    console.log(chalk.yellow("Time Complexity (Big O):"));
+    console.log(`${chalk.magenta("constructor:")} ${chalk.bold.magenta("O(n)")} - n is the number of initial elements`);
+    console.log(`${chalk.magenta("push:")} ${chalk.bold.magenta("O(1)")} - constant time`);
+    console.log(`${chalk.magenta("pop:")} ${chalk.bold.magenta("O(1)")} - constant time`);
+    console.log(`${chalk.magenta("unshift:")} ${chalk.bold.magenta("O(n)")} - must shift all elements`);
+    console.log(`${chalk.magenta("shift:")} ${chalk.bold.magenta("O(n)")} - must shift all elements`);
+    console.log(`${chalk.magenta("get:")} ${chalk.bold.magenta("O(1)")} - direct index access`);
+    console.log(`${chalk.magenta("getIndex:")} ${chalk.bold.magenta("O(n)")} - may need to search entire list`);
+    console.log(`${chalk.magenta("getAll:")} ${chalk.bold.magenta("O(n)")} - iterates through all elements`);
+    console.log(`${chalk.magenta("replace:")} ${chalk.bold.magenta("O(1)")} - direct index access`);
+    console.log(`${chalk.magenta("size:")} ${chalk.bold.magenta("O(1)")} - returns stored length value`);
+    console.log(`${chalk.magenta("clear:")} ${chalk.bold.magenta("O(1)")} - resets list`);
     separator("bottom");
 };
