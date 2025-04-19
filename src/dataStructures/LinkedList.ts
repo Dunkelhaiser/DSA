@@ -144,6 +144,32 @@ export class LinkedList<T> {
         return false;
     }
 
+    remove(index: number) {
+        if (index < 0 || index >= this.length) {
+            return null;
+        }
+
+        if (index === 0) {
+            return this.shift();
+        }
+
+        if (index === this.length - 1) {
+            return this.pop();
+        }
+
+        const prevNode = this.getElement(index - 1);
+        if (!prevNode?.next) {
+            return null;
+        }
+
+        const removedNode = prevNode.next;
+        prevNode.next = removedNode.next;
+        removedNode.next = null;
+        this.length--;
+
+        return removedNode;
+    }
+
     clear() {
         this.head = null;
         this.tail = null;

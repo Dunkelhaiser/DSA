@@ -145,6 +145,32 @@ console.log(`Values: [${linkedList.getAll().toString()}]`);
 console.log("------------------\n");
 
 console.log("------------------");
+console.log("Remove:");
+linkedList.push(10);
+linkedList.push(20);
+linkedList.push(30);
+linkedList.push(40);
+linkedList.push(50);
+console.log(`Starting values: [${linkedList.getAll().toString()}]`);
+
+const removedFromMiddle = linkedList.remove(2);
+console.log(`\nRemoved node from index 2, value: ${removedFromMiddle?.value}`);
+console.log(`After removing index 2, values: [${linkedList.getAll().toString()}]`);
+
+const removedFromStart = linkedList.remove(0);
+console.log(`\nRemoved node from start, value: ${removedFromStart?.value}`);
+console.log(`After removing from start, values: [${linkedList.getAll().toString()}]`);
+
+const removedFromEnd = linkedList.remove(linkedList.size() - 1);
+console.log(`\nRemoved node from end, value: ${removedFromEnd?.value}`);
+console.log(`After removing from end, values: [${linkedList.getAll().toString()}]`);
+
+const invalidRemove = linkedList.remove(10);
+console.log(`\nAttempt to remove invalid index, result: ${invalidRemove?.value}`);
+console.log(`Values: [${linkedList.getAll().toString()}]`);
+console.log("------------------\n");
+
+console.log("------------------");
 console.log("Clear:");
 linkedList.clear();
 console.log(`After clearing, length: ${linkedList.size()}`);
