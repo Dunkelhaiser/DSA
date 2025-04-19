@@ -1,178 +1,38 @@
-import { LinkedList } from "./dataStructures/LinkedList.js";
-import { List } from "./dataStructures/List.js";
-import { fizzBuzz, fizzBuzzSet } from "./fizzBuzz.js";
-import { reverse } from "./reverse.js";
+import inquirer from "inquirer";
+import { handleDoublyLinkedList } from "./cli/handleDoublyLinkedList.js";
+import { handleLinkedList } from "./cli/handleLinkedList.js";
+import { handleList } from "./cli/handleList.js";
+import { handleUtilityFunctions } from "./cli/handleUtilityFunctions.js";
 
-const list = new List(1, 2, 3);
+const mainMenu = async () => {
+    while (true) {
+        const { option } = await inquirer.prompt<{ option: string }>([
+            {
+                type: "list",
+                name: "option",
+                message: "What would you like to work with?",
+                choices: ["List", "Linked List", "Doubly Linked List", "Utility Functions", "Exit"],
+                loop: false,
+            },
+        ]);
 
-console.log("------------------");
-console.log("Initial list:");
-console.log(`Data: [${list.getAll().toString()}]`);
-console.log(`Length: ${list.length}`);
-console.log("------------------\n");
+        switch (option) {
+            case "List":
+                await handleList();
+                break;
+            case "Linked List":
+                await handleLinkedList();
+                break;
+            case "Doubly Linked List":
+                await handleDoublyLinkedList();
+                break;
+            case "Utility Functions":
+                await handleUtilityFunctions();
+                break;
+            case "Exit":
+                process.exit(0);
+        }
+    }
+};
 
-console.log("------------------");
-list.push(5);
-list.unshift(0);
-
-console.log(`List after pushing 5 and unshift 0: [${list.getAll().toString()}]`);
-console.log(`Length: ${list.length}`);
-
-list.pop();
-list.shift();
-
-console.log(`\nList after pop and shift: [${list.getAll().toString()}]`);
-console.log(`Length: ${list.length}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log(`Element at index 0: ${list.get(0)}`);
-console.log(`Element at index of 3: ${list.getIndex(3)}`);
-console.log(`Element at index of 5 (doesn't exist): ${list.getIndex(5)}`);
-console.log(`\nIndex of element 3: ${list.getIndex(3)}`);
-console.log(`Index of element 5 (doesn't exist): ${list.getIndex(5)}`);
-console.log("------------------\n");
-
-console.log("------------------");
-list.replace(0, 10);
-console.log(`Element at index 0 after being replaced: ${list.get(0)}`);
-
-list.replace(10, 7);
-console.log(`Element at index 10 after being replaced: ${list.get(10)}`);
-
-console.log(`\nList after replacing out of bounds element: [${list.getAll().toString()}]`);
-console.log(`Length: ${list.length}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log(list);
-console.log("------------------\n");
-
-console.log("------------------");
-const str = "Hello";
-const reversedStr = reverse(str);
-
-console.log(`Original string: ${str}`);
-console.log(`Reversed string: ${reversedStr}`);
-
-const num = 12345;
-const reversedNum = reverse(num);
-
-console.log(`\nOriginal number: ${num}`);
-console.log(`Reversed number: ${reversedNum}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log(fizzBuzz(9));
-console.log(fizzBuzz(20));
-console.log(fizzBuzz(15));
-console.log(fizzBuzz(4));
-console.log();
-console.log(fizzBuzzSet(20));
-console.log("------------------\n");
-
-const linkedList = new LinkedList(1, 2, 3);
-
-console.log("------------------");
-console.log("Initial linked list:");
-console.log(`Length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Push:");
-linkedList.push(4);
-console.log(`After pushing 4, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Pop:");
-const poppedNode = linkedList.pop();
-console.log(`Popped node value: ${poppedNode?.value}`);
-console.log(`After popping, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Unshift:");
-linkedList.unshift(0);
-console.log(`After unshifting 0, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Shift:");
-const shiftedNode = linkedList.shift();
-console.log(`Shifted node value: ${shiftedNode?.value}`);
-console.log(`After shifting, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Get Element:");
-const nodeAtIndex1 = linkedList.getElement(1);
-console.log(`Node at index 1 value: ${nodeAtIndex1?.value}`);
-const nodeAtInvalidIndex = linkedList.getElement(10);
-console.log(`Node at invalid index: ${nodeAtInvalidIndex?.value}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Set:");
-const setResult = linkedList.set(1, 99);
-console.log(`Set index 1 to value 99, success: ${setResult}`);
-console.log(`Node at index 1 value after set: ${linkedList.getElement(1)?.value}`);
-const invalidSetResult = linkedList.set(10, 100);
-console.log(`Set invalid index, failure: ${invalidSetResult}`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Insert Method Example:");
-linkedList.insert(1, 50);
-console.log(`After inserting 50 at index 1, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log(`Values: [${linkedList.getAll().toString()}]`); // Helper function to display values
-
-linkedList.insert(0, -1);
-console.log(`After inserting -1 at index 0, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log(`Values: [${linkedList.getAll().toString()}]`);
-
-linkedList.insert(linkedList.size(), 100);
-console.log(`After inserting 100 at the end, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log(`Values: [${linkedList.getAll().toString()}]`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Remove:");
-linkedList.push(10);
-linkedList.push(20);
-linkedList.push(30);
-linkedList.push(40);
-linkedList.push(50);
-console.log(`Starting values: [${linkedList.getAll().toString()}]`);
-
-const removedFromMiddle = linkedList.remove(2);
-console.log(`\nRemoved node from index 2, value: ${removedFromMiddle?.value}`);
-console.log(`After removing index 2, values: [${linkedList.getAll().toString()}]`);
-
-const removedFromStart = linkedList.remove(0);
-console.log(`\nRemoved node from start, value: ${removedFromStart?.value}`);
-console.log(`After removing from start, values: [${linkedList.getAll().toString()}]`);
-
-const removedFromEnd = linkedList.remove(linkedList.size() - 1);
-console.log(`\nRemoved node from end, value: ${removedFromEnd?.value}`);
-console.log(`After removing from end, values: [${linkedList.getAll().toString()}]`);
-
-const invalidRemove = linkedList.remove(10);
-console.log(`\nAttempt to remove invalid index, result: ${invalidRemove?.value}`);
-console.log(`Values: [${linkedList.getAll().toString()}]`);
-console.log("------------------\n");
-
-console.log("------------------");
-console.log("Clear:");
-linkedList.clear();
-console.log(`After clearing, length: ${linkedList.size()}`);
-console.log(`Head: ${linkedList.getHead()?.value}, Tail: ${linkedList.getTail()?.value}`);
-console.log("------------------\n");
+mainMenu().catch((error) => console.error("An error occurred:", error));
