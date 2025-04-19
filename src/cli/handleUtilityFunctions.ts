@@ -1,7 +1,7 @@
 import chalk from "chalk";
 import inquirer from "inquirer";
-import { fizzBuzz, fizzBuzzSet } from "../fizzBuzz.js";
-import { reverse } from "../reverse.js";
+import { fizzBuzz, fizzBuzzSet } from "../utils/fizzBuzz.js";
+import { reverse } from "../utils/reverse.js";
 import { separator } from "./utils.js";
 
 export const handleUtilityFunctions = async () => {
