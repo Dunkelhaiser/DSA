@@ -1,5 +1,5 @@
 export class List<T> {
-    length = 0;
+    private length = 0;
     private data: Record<number, T> = {};
 
     constructor(...initialData: T[]) {
@@ -73,6 +73,10 @@ export class List<T> {
             this.data[idx] = element;
             this.length = idx + 1;
         } else this.data[idx] = element;
+    }
+
+    size() {
+        return this.length;
     }
 
     clear() {
