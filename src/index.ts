@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { handleDoublyLinkedList } from "./cli/handleDoublyLinkedList.js";
+import { handleHashTable } from "./cli/handleHashTable.js";
 import { handleLinkedList } from "./cli/handleLinkedList.js";
 import { handleList } from "./cli/handleList.js";
 import { handleQueue } from "./cli/handleQueue.js";
@@ -13,7 +14,16 @@ const mainMenu = async () => {
                 type: "list",
                 name: "option",
                 message: "What would you like to work with?",
-                choices: ["List", "Linked List", "Doubly Linked List", "Stack", "Queue", "Utility Functions", "Exit"],
+                choices: [
+                    "List",
+                    "Linked List",
+                    "Doubly Linked List",
+                    "Stack",
+                    "Queue",
+                    "Hash Table",
+                    "Utility Functions",
+                    "Exit",
+                ],
                 loop: false,
             },
         ]);
@@ -33,6 +43,9 @@ const mainMenu = async () => {
                 break;
             case "Queue":
                 await handleQueue();
+                break;
+            case "Hash Table":
+                await handleHashTable();
                 break;
             case "Utility Functions":
                 await handleUtilityFunctions();
