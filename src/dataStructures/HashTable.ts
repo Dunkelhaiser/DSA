@@ -1,5 +1,5 @@
 /* eslint-disable no-bitwise */
-export class HashMap<K, V> {
+export class HashTable<K, V> {
     private buckets: [K, V][][];
     private _size: number;
     private capacity: number;
