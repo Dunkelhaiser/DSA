@@ -35,43 +35,64 @@ export const handleBinarySearch = async () => {
     separator("top");
     console.log(`${chalk.blue("Sorted List:")} ${chalk.cyan(JSON.stringify(elements))}`);
     console.log(chalk.yellow("Note: binary search requires a sorted array"));
-    separator("bottom");
+    separator();
 
     displayTimeComplexity();
 
     while (true) {
-        const { target } = await inquirer.prompt<{ target: string }>({
-            type: "input",
-            name: "target",
-            message: "Enter the element to search for:",
-            validate: (input) => (input.trim() !== "" ? true : chalk.red("Enter a search element")),
-        });
-
-        const searchTarget = dataType === "Numbers" ? Number(target) : target;
-
-        const result = binarySearch(elements, searchTarget);
-
-        separator("top");
-        console.log(`${chalk.blue("Sorted List:")} ${chalk.cyan(JSON.stringify(elements))}`);
-        console.log(`${chalk.blue("Target:")} ${chalk.yellow(searchTarget)}`);
-
-        if (result !== -1) {
-            console.log(`${chalk.green("Result:")} Element found at index ${chalk.bold.green(result)}`);
-        } else {
-            console.log(`${chalk.red("Result:")} Element ${chalk.bold.red("not found")} in the list`);
-        }
-        separator("bottom");
-
-        const { option } = await inquirer.prompt<{ option: string }>({
+        const { operation } = await inquirer.prompt({
             type: "list",
-            name: "option",
-            message: "What would you like to do next?",
-            choices: ["Search element", "Display time complexity", "Return to search algorithms menu"],
+            name: "operation",
+            message: "Choose an operation to perform:",
+            choices: [
+                "Search element",
+                "Display sorted elements",
+                "Display time complexity",
+                "Return to search algorithms menu",
+            ],
             loop: false,
         });
 
-        if (option === "Return to search algorithms menu") return;
-        if (option === "Display time complexity") displayTimeComplexity();
+        switch (operation) {
+            case "Search element": {
+                const { target } = await inquirer.prompt<{ target: string }>({
+                    type: "input",
+                    name: "target",
+                    message: "Enter the element to search for:",
+                    validate: (input) => (input.trim() !== "" ? true : chalk.red("Enter a search element")),
+                });
+
+                const searchTarget = dataType === "Numbers" ? Number(target) : target;
+                const result = binarySearch(elements, searchTarget);
+
+                separator("top");
+                console.log(`${chalk.blue("Sorted List:")} ${chalk.cyan(JSON.stringify(elements))}`);
+                console.log(`${chalk.blue("Target:")} ${chalk.yellow(searchTarget)}`);
+
+                if (result !== -1) {
+                    console.log(`${chalk.green("Result:")} Element found at index ${chalk.bold.green(result)}`);
+                } else {
+                    console.log(`${chalk.red("Result:")} Element ${chalk.bold.red("not found")} in the list`);
+                }
+                separator("bottom");
+                break;
+            }
+
+            case "Display sorted elements": {
+                separator("top");
+                console.log(`${chalk.blue("Sorted List:")} ${chalk.cyan(JSON.stringify(elements))}`);
+                separator("bottom");
+                break;
+            }
+
+            case "Display time complexity": {
+                displayTimeComplexity();
+                break;
+            }
+
+            default:
+                return;
+        }
     }
 };
 
