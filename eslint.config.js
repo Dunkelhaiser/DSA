@@ -151,7 +151,7 @@ export default tseslint.config(
         },
     },
     {
-        files: ["**/cli/*.ts", "./src/index.ts"],
+        files: ["**/cli/**/*.ts", "./src/index.ts"],
         rules: {
             "@typescript-eslint/no-unnecessary-condition": "off",
             "@typescript-eslint/no-unsafe-assignment": "off",

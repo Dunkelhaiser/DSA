@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import { handleAlgorithms } from "./cli/algorithms/handleAlgorithms.js";
 import { handleDoublyLinkedList } from "./cli/handleDoublyLinkedList.js";
 import { handleHashTable } from "./cli/handleHashTable.js";
 import { handleLinkedList } from "./cli/handleLinkedList.js";
@@ -21,6 +22,7 @@ const mainMenu = async () => {
                     "Stack",
                     "Queue",
                     "Hash Table",
+                    "Algorithms",
                     "Utility Functions",
                     "Exit",
                 ],
@@ -46,6 +48,9 @@ const mainMenu = async () => {
                 break;
             case "Hash Table":
                 await handleHashTable();
+                break;
+            case "Algorithms":
+                await handleAlgorithms();
                 break;
             case "Utility Functions":
                 await handleUtilityFunctions();
