@@ -37,6 +37,8 @@ export const handleBinarySearch = async () => {
     console.log(chalk.yellow("Note: binary search requires a sorted array"));
     separator("bottom");
 
+    displayTimeComplexity();
+
     while (true) {
         const { target } = await inquirer.prompt<{ target: string }>({
             type: "input",
@@ -64,10 +66,22 @@ export const handleBinarySearch = async () => {
             type: "list",
             name: "option",
             message: "What would you like to do next?",
-            choices: ["Search element", "Return to search algorithms menu"],
+            choices: ["Search element", "Display time complexity", "Return to search algorithms menu"],
             loop: false,
         });
 
         if (option === "Return to search algorithms menu") return;
+        if (option === "Display time complexity") displayTimeComplexity();
     }
+};
+
+const displayTimeComplexity = () => {
+    separator("top");
+    console.log(chalk.yellow("Time Complexity (Big O):"));
+    console.log(
+        `${chalk.magenta("Binary Search:")} ${chalk.bold.magenta("O(log(n))")} - where n is the number of elements in the list`
+    );
+    console.log(chalk.cyan("Binary search divides the search interval in half with each step"));
+    console.log(chalk.yellow("Note: binary search requires a sorted array to work correctly"));
+    separator("bottom");
 };

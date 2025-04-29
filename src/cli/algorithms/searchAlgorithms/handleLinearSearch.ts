@@ -13,6 +13,8 @@ export const handleLinearSearch = async () => {
 
     const elements = elementsInput.split(",").map((item) => item.trim());
 
+    displayTimeComplexity();
+
     while (true) {
         const { target } = await inquirer.prompt<{ target: string }>({
             type: "input",
@@ -38,10 +40,20 @@ export const handleLinearSearch = async () => {
             type: "list",
             name: "option",
             message: "What would you like to do next?",
-            choices: ["Search element", "Return to search algorithms menu"],
+            choices: ["Search element", "Display time complexity", "Return to search algorithms menu"],
             loop: false,
         });
 
         if (option === "Return to search algorithms menu") return;
+        if (option === "Display time complexity") displayTimeComplexity();
     }
+};
+
+const displayTimeComplexity = () => {
+    separator("top");
+    console.log(chalk.yellow("Time Complexity (Big O):"));
+    console.log(
+        `${chalk.magenta("Linear Search:")} ${chalk.bold.magenta("O(n)")} - where n is the number of elements in the list`
+    );
+    separator("bottom");
 };
